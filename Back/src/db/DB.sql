@@ -62,3 +62,50 @@ CREATE TABLE detalle_pedido (
     FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido),
     FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
 );
+
+INSERT INTO usuarios (nombre, telefono, direccion, correo, ciudad, rol, contraseña)
+VALUES
+("Julian Torres", 3004567890, "Cra 10 #20-30", "julian@example.com", "Bogotá", "administrador", "pass1"),
+("Maria Lopez", 3109876543, "Cl 45 #15-22", "maria@gmail.com", "Medellín", "cliente", "pass2"),
+("Carlos Perez", 3152223344, "Av 9 #12-33", "carlos@hotmail.com", "Cali", "cliente", "pass3"),
+("Sara Mendoza", 3124445566, "Cra 80 #55-40", "sara@example.com", "Barranquilla", "cliente", "pass4"),
+("Luis Ramírez", 3201112233, "Cl 100 #25-20", "luis@mail.com", "Bogotá", "cliente", "pass5");
+
+INSERT INTO proveedor (nombre_proveedor, cuenta_bancaria, telefono, direccion, correo, estado, nit)
+VALUES
+("CicloPro S.A", "123456789", 3101112233, "Zona Industrial 45", "contacto@ciclopro.com", "activo", "900123456"),
+("Andes Bikes", "987654321", 3123334445, "Av Las Palmas 33", "ventas@andesbikes.com", "activo", "901987654"),
+("BikeMaster", "456789123", 3158889991, "Cl 70 #40-55", "info@bikemaster.com", "activo", "902345678"),
+("RuedaFácil", "741852963", 3002221110, "Cra 50 #101-22", "contacto@ruedafacil.com", "inactivo", "903456789"),
+("ProPedal", "369258147", 3013332221, "Zona Franca 90", "pedidos@propedal.com", "activo", "904567890");
+
+INSERT INTO categoria (nombre_categoria) VALUES
+("Bicicletas"),
+("Accesorios"),
+("Repuestos"),
+("Ropa Deportiva"),
+("Seguridad");
+
+INSERT INTO productos (descripcion, precio, color, marca, stock, id_proveedor, id_categoria)
+VALUES
+("Bicicleta MTB aluminio", 1200000, "Negro", "GW", 25, 1, 1),
+("Casco profesional ruta", 250000, "Rojo", "Specialized", 40, 2, 5),
+("Llantas MTB 29 x2.1", 150000, "Negro", "Maxxis", 60, 3, 3),
+("Guantes deportivos gel", 45000, "Azul", "Shimano", 80, 4, 4),
+("Porta caramañola aluminio", 30000, "Plateado", "Giant", 100, 5, 2);
+
+INSERT INTO pedido (fecha, precio_unitario, descripcion, id_usuario)
+VALUES
+("2025-01-10", 1200000, "Compra bicicleta MTB", 1),
+("2025-01-12", 250000, "Compra casco", 2),
+("2025-01-15", 150000, "Compra llanta MTB", 3),
+("2025-01-18", 45000, "Compra guantes", 4),
+("2025-01-20", 30000, "Compra porta caramañola", 5);
+
+INSERT INTO detalle_pedido (descripcion, precio_total, fecha, estado, id_pedido, id_producto)
+VALUES
+("Bicicleta MTB aluminio", 1200000, "2025-01-10 10:30:00", "pagado", 1, 1),
+("Casco profesional ruta", 250000, "2025-01-12 11:00:00", "pendiente", 2, 2),
+("Llanta MTB 29 x2.1", 150000, "2025-01-15 14:20:00", "pagado", 3, 3),
+("Guantes deportivos gel", 45000, "2025-01-18 09:15:00", "cancelado", 4, 4),
+("Porta caramañola aluminio", 30000, "2025-01-20 13:40:00", "pagado", 5, 5);
