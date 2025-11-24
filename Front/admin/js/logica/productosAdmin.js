@@ -87,7 +87,7 @@ async function abrirModalEditar(id) {
     modal.style.display = "flex";
 
     await cargarCategoriasSelect()
-    await cargarCategoriasSelect();
+    await cargarProveedoresSelect();
 
     // Cargar datos
     const productos = await obtenerProductos();
