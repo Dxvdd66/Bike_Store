@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,38 @@
 
     <link rel="stylesheet" href="../public/styles/productos.css">
 </head>
+
 <body>
 
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-logo">Bike Store</div>
+
+        <div class="navbar-busqueda">
+            <input type="text" placeholder="Buscar productos...">
+        </div>
+
+        <div class="navbar-botones">
+            <button class="btn-nav">🛒 Carrito</button>
+            <button class="btn-nav">🔐 Iniciar Sesión</button>
+        </div>
+    </nav>
+
+    <!-- BANNER (FUERA DEL NAVBAR) -->
+    <div class="banner">
+        <div class="banner-contenido">
+            <h2>Bienvenido a Bike Store</h2>
+            <p>Las mejores bicicletas, repuestos y accesorios al mejor precio.</p>
+        </div>
+    </div>
+
+    <!-- TÍTULO -->
     <h1 class="titulo">Productos Disponibles</h1>
 
+    <!-- PRODUCTOS -->
     <div id="contenedor-productos" class="grid-productos"></div>
 
     <script type="module" src="../public/js/logica/productos.js"></script>
 </body>
+
 </html>
