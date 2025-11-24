@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productos</title>
+    <link rel="stylesheet" href="./styles/productos.css" />
+    <link rel="stylesheet" href="./styles/usuarios.css" />
+  </head>
+  <body>
+    <h1>Productos</h1>
+
+    <div id="contenedor-productos" class="grid"></div>
+
+    <body>
+      <h1>Usuarios</h1>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Correo</th>
+            <th>Ciudad</th>
+            <th>Rol</th>
+          </tr>
+        </thead>
+
+        <tbody id="tabla-usuarios"></tbody>
+      </table>
+    </body>
+
+    <script src="./js/api.js" type="module"></script>
+    <script src="./js/logica/productos.js" type="module"></script>
+    <script src="./js/logica/usuarios.js" type="module"></script>
+  </body>
+</html>

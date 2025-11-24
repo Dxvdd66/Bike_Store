@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const router = express.Router();
 
 // Importar rutas normales
 const crudRoutes = require('./routes/crud.routes.js');
@@ -20,5 +21,15 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: err.message });
 });
 
-module.exports = app;
 
+app.use('/api/categoria', require('./routes/categoria.routes.js'));
+app.use('/api/detalle_pedido', require('./routes/detalle_pedido.routes.js'));
+app.use('/api/proveedor', require('./routes/proveedor.routes.js'));
+app.use('/api/usuarios', require('./routes/usuarios.routes.js'));
+app.use('/api/productos', require('./routes/productos.routes.js'));
+app.use('/api/pedido', require('./routes/pedido.routes.js'));
+
+
+
+
+module.exports = app;
