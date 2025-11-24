@@ -1,9 +1,19 @@
-body {
-    background: #f5f5f5;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+
+html{
+    overflow-x: hidden;
+    width: 100%;
+}
+
+body {
+    padding: 20px 0; /* quitamos padding horizontal */
+    overflow-x: hidden;
+}
+
 
 .titulo {
     text-align: center;
@@ -94,7 +104,7 @@ body {
 }
 
 .banner {
-  width: 100%;
+  width: calc(100% - 40px); /* evita desbordamiento */
   height: 260px;
   background: url("https://javabikes.co/wp-content/uploads/2024/02/java-bike-negra-scaled.jpg.webp") no-repeat center/cover;
   border-radius: 12px;
@@ -135,4 +145,51 @@ body {
 
 .btn-banner:hover {
   background: #ffd95a;
+}
+
+/* FOOTER PROFESIONAL */
+.footer {
+  width: 100%;
+  background: #1b1b1b;
+  color: #fff;
+  padding: 40px 20px;
+  margin-top: 60px;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer .footer-marca {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #ffca28;
+  margin-bottom: 8px;
+}
+
+.footer-info {
+  font-size: 0.95rem;
+  opacity: 0.8;
+  margin-bottom: 15px;
+}
+
+.footer-redes {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* Iconos */
+.icono-red {
+  width: 32px;
+  height: 32px;
+  fill: #ffca28;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.icono-red:hover {
+  fill: #ffd95a;
+  transform: scale(1.15);
 }
