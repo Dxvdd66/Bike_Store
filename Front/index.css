@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111827;
+    font-family: Arial, sans-serif;
+}
+
+.contenedor-principal {
+    text-align: center;
+    color: white;
+}
+
+h1 {
+    margin-bottom: 40px;
+    font-size: 32px;
+}
+
+.botones {
+    display: flex;
+    gap: 20px;
+    justify-content: cent
+};

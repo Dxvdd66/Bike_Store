@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Usuarios</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../admin/styles/usuarios.css" />
+</head>
+<body>
+
+    <h1>Usuarios Registrados</h1>
+
+    <div class="tabla-contenedor">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Correo</th>
+                    <th>Ciudad</th>
+                    <th>Rol</th>
+                </tr>
+            </thead>
+
+            <tbody id="tabla-usuarios">
+                <!-- Aquí se insertan las filas desde usuarios.js -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="../admin/js/logica/usuarios.js"></script>
+
+</body>
+</html>
