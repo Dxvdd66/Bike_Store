@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../admin/components/navBar.css" />
+    <link rel="stylesheet" href="../admin/styles/productosAdmin.css">
     <title>Productos</title>
 </head>
 
@@ -18,6 +19,31 @@
             <li><a href="./reportes.html">Reportes</a></li>
         </ul>
     </nav>
+
+    <h1>Productos Registrados</h1>
+
+        <div class="tabla-contenedor">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Color</th>
+                        <th>Marca</th>
+                        <th>Stock</th>
+                        <th>Proveedor</th>
+                        <th>Categoría</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tabla-productos">
+                    <!-- Aquí JS inserta las filas -->
+                </tbody>
+            </table>
+        </div>
 </body>
+
+    <script type="module" src="../admin/js/logica/productosAdmin.js"></script>
 
 </html>
