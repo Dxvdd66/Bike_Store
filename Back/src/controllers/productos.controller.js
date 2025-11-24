@@ -3,14 +3,27 @@ const { exito, fallo } = require("../utils/respuesta");
 
 // Obtener todos los productos
 exports.getProductos = async (req, res) => {
-  const [rows] = await db.query("SELECT * FROM productos");
+  try {
+    const [rows] = await db.query(`
+      SELECT p.*, 
+             c.nombre_categoria, 
+             pr.nombre_proveedor
+      FROM productos p
+      LEFT JOIN categoria c ON p.id_categoria = c.id_categoria
+      LEFT JOIN proveedor pr ON p.id_proveedor = pr.id_proveedor
+    `);
 
-  if (rows.length === 0) {
-    return fallo(res, "No hay productos registrados", 404);
+    if (rows.length === 0) {
+      return fallo(res, "No hay productos registrados", 404);
+    }
+
+    return exito(res, rows, "Productos obtenidos");
+  } catch (error) {
+    console.error("Error al obtener productos:", error);
+    return fallo(res, "Error interno del servidor", 500);
   }
-
-  return exito(res, rows, "Productos obtenidos");
 };
+
 
 // Obtener producto por ID
 exports.getProductoById = async (req, res) => {

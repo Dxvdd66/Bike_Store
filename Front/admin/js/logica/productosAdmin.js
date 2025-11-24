@@ -39,8 +39,8 @@ async function cargarProductos() {
             <td>${producto.color}</td>
             <td>${producto.marca}</td>
             <td>${producto.stock}</td>
-            <td>${producto.id_proveedor}</td>
-            <td>${producto.id_categoria}</td>
+            <td>${producto.nombre_proveedor}</td>
+            <td>${producto.nombre_categoria}</td>
 
             <td>
                 <button class="editar" data-id="${producto.id_producto}">Editar</button>
