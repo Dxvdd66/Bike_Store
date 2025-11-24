@@ -15,3 +15,46 @@ export async function obtenerUsuarios() {
         return [];
     }
 }
+
+// Crear usuario
+export async function crearUsuario(data) {
+    try {
+        const res = await fetch(API_USUARIOS, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        return await res.json();
+    } catch (error) {
+        console.error("Error creando usuario:", error);
+    }
+}
+
+// Actualizar usuario
+export async function editarUsuario(id, data) {
+    try {
+        const res = await fetch(`${API_USUARIOS}/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        return await res.json();
+    } catch (error) {
+        console.error("Error editando usuario:", error);
+    }
+}
+
+// Eliminar usuario
+export async function eliminarUsuario(id) {
+    try {
+        const res = await fetch(`${API_USUARIOS}/${id}`, {
+            method: "DELETE"
+        });
+
+        return await res.json();
+    } catch (error) {
+        console.error("Error eliminando usuario:", error);
+    }
+}

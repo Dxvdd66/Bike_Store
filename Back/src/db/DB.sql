@@ -10,7 +10,7 @@ CREATE TABLE usuarios (
     fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
     ciudad VARCHAR(100),
     rol ENUM("administrador", "cliente") DEFAULT "cliente",
-    contraseña VARCHAR(255)
+    contrasena VARCHAR(255)
 );
 
 CREATE TABLE proveedor (
@@ -63,7 +63,7 @@ CREATE TABLE detalle_pedido (
     FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
 );
 
-INSERT INTO usuarios (nombre, telefono, direccion, correo, ciudad, rol, contraseña)
+INSERT INTO usuarios (nombre, telefono, direccion, correo, ciudad, rol, contrasena)
 VALUES
 ("Julian Torres", 3004567890, "Cra 10 #20-30", "julian@example.com", "Bogotá", "administrador", "pass1"),
 ("Maria Lopez", 3109876543, "Cl 45 #15-22", "maria@gmail.com", "Medellín", "cliente", "pass2"),

@@ -32,14 +32,14 @@ exports.getUsuario = async (req, res) => {
 
 // Crear usuario
 exports.createUsuario = async (req, res) => {
-    const { nombre, telefono, direccion, correo, ciudad, rol } = req.body;
+    const { nombre, telefono, direccion, correo, ciudad, rol, contrasena } = req.body;
 
     const [result] = await db.query(
-    `INSERT INTO usuarios 
-    (nombre, telefono, direccion, correo, ciudad, rol, contraseña) 
-    VALUES (?, ?, ?, ?, ?, ?, ?)`,
-    [nombre, telefono, direccion, correo, ciudad, rol]
+        `INSERT INTO usuarios (nombre, telefono, direccion, correo, ciudad, rol, contrasena)
+        VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        [nombre, telefono, direccion, correo, ciudad, rol, contrasena]
     );
+
 
     return exito(res, { id: result.insertId }, "Usuario creado", 201);
 };
@@ -48,20 +48,22 @@ exports.createUsuario = async (req, res) => {
 // Actualizar usuario
 exports.updateUsuario = async (req, res) => {
     const { id } = req.params;
-    const { nombre, telefono, direccion, correo, ciudad, rol } = req.body;
+    const { nombre, telefono, direccion, correo, ciudad, rol, contrasena } = req.body;
 
     const [result] = await db.query(
-    `UPDATE usuarios SET nombre=?, telefono=?, direccion=?, correo=?, ciudad=?, rol=?, contraseña=?
-    WHERE id_usuario=?`,
-    [nombre, telefono, direccion, correo, ciudad, rol, id]
+        `UPDATE usuarios 
+         SET nombre=?, telefono=?, direccion=?, correo=?, ciudad=?, rol=?, contrasena=?
+         WHERE id_usuario=?`,
+        [nombre, telefono, direccion, correo, ciudad, rol, contrasena, id]
     );
 
     if (result.affectedRows === 0) {
-    return fallo(res, "Usuario a actualizar no encontrado", 404);
+        return fallo(res, "Usuario a actualizar no encontrado", 404);
     }
 
     return exito(res, null, "Usuario actualizado");
 };
+
 
 
 // Eliminar usuario

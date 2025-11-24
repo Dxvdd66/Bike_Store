@@ -24,6 +24,8 @@
 
     <h1>Usuarios Registrados</h1>
 
+    <button class="btn azul" onclick="abrirModalCrear()">Agregar Usuario</button>
+
     <div class="tabla-contenedor">
         <table>
             <thead>
@@ -35,6 +37,7 @@
                     <th>Correo</th>
                     <th>Ciudad</th>
                     <th>Rol</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
 
@@ -43,6 +46,57 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Modal AGREGAR USUARIO -->
+<div id="modal-crear" class="modal-overlay">
+    <div class="modal">
+        <h2>Agregar Usuario</h2>
+
+        <form id="form-crear-usuario">
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="number" name="telefono" placeholder="Teléfono" required>
+            <input type="text" name="direccion" placeholder="Dirección" required>
+            <input type="email" name="correo" placeholder="Correo" required>
+            <input type="text" name="ciudad" placeholder="Ciudad" required>
+            <input type="password" name="contrasena" placeholder="Contraseña" required>
+
+            <select name="rol" required>
+                <option value="cliente">Cliente</option>
+                <option value="administrador">Administrador</option>
+            </select>
+
+            <button type="submit" class="btn azul">Guardar</button>
+            <button type="button" class="btn rojo" onclick="cerrarModalCrear()">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal EDITAR USUARIO -->
+<div id="modal-editar" class="modal-overlay">
+    <div class="modal">
+        <h2>Editar Usuario</h2>
+
+        <form id="form-editar-usuario">
+            <input type="hidden" name="id_usuario">
+
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="number" name="telefono" placeholder="Teléfono" required>
+            <input type="text" name="direccion" placeholder="Direccion" required>
+            <input type="email" name="correo" placeholder="Correo" required>
+            <input type="text" name="ciudad" placeholder="Ciudad" required>
+            <input type="password" name="contrasena" placeholder="Nueva contraseña (opcional)">
+
+            <select name="rol" required>
+                <option value="cliente">Cliente</option>
+                <option value="administrador">Administrador</option>
+            </select>
+
+            <button type="submit" class="btn azul">Actualizar</button>
+            <button type="button" class="btn rojo" onclick="cerrarModalEditar()">Cancelar</button>
+        </form>
+    </div>
+</div>
+
 
     <!-- Scripts -->
     <script type="module" src="../admin/js/logica/usuarios.js"></script>

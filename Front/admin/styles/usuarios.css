@@ -54,3 +54,41 @@ tbody tr:nth-child(even) {
     font-style: italic;
     color: #555;
 }
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 350px;
+}
+
+.modal input, .modal select {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 8px;
+}
+
+.btn {
+    padding: 8px 12px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.azul {
+    background: #2563eb;
+    color: white;
+}
+.rojo {
+    background: #dc2626;
+    color: white;
+}
