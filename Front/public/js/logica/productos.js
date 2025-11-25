@@ -15,8 +15,9 @@ async function cargarProductos() {
         card.classList.add("card");
 
         card.innerHTML = `
-            <h3>${producto.nombre}</h3>
-            <p>${producto.descripcion || "Sin descripción"}</p>
+            <img src="${producto.imagen}" alt="${producto.nombre}" class="img-producto">
+
+            <h3>${producto.descripcion}</h3>
             <p class="precio">$${producto.precio}</p>
         `;
 

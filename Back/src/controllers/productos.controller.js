@@ -1,5 +1,6 @@
 const db = require("../config/conexion_DB");
 const { exito, fallo } = require("../utils/respuesta");
+const ImagenesController = require("./imagenes.controller");
 
 // Obtener todos los productos
 exports.getProductos = async (req, res) => {
@@ -27,61 +28,88 @@ exports.getProductos = async (req, res) => {
 
 // Obtener producto por ID
 exports.getProductoById = async (req, res) => {
-  const { id } = req.params;
+  try {
+    const { id } = req.params;
 
-  const [rows] = await db.query(
-    "SELECT * FROM productos WHERE id_producto = ?",
-    [id]
-  );
+    const [rows] = await db.query(
+      "SELECT * FROM productos WHERE id_producto = ?",
+      [id]
+    );
 
-  if (rows.length > 0) {
-    return res.status(400).json({
-        mensaje: "No se puede eliminar este producto porque tiene pedidos asociados."
-    });
+    if (rows.length === 0) {
+      return fallo(res, "Producto no encontrado", 404);
+    }
+
+    return exito(res, rows[0], "Producto encontrado");
+  } catch (error) {
+    console.error("Error al obtener producto:", error);
+    return fallo(res, "Error interno", 500);
   }
-
-  if (rows.length === 0) {
-    return fallo(res, "Producto no encontrado", 404);
-  }
-
-  return exito(res, rows[0], "Producto encontrado");
 };
+
 
 // Crear producto
+// Crear producto (con base64 opcional)
 exports.crearProducto = async (req, res) => {
-  const datos = req.body;
+  try {
+    const { imagen, ...datos } = req.body; // separo la imagen
 
-  // Si viene imagen, agregar filename
-  if (req.file) {
-    datos.imagen = req.file.filename;
+    // 1. Crear producto sin imagen
+    const [result] = await db.query("INSERT INTO productos SET ?", [datos]);
+    const id = result.insertId;
+
+    // 2. Si viene imagen base64, guardarla
+    if (imagen) {
+      await ImagenesController.guardarImagen(
+        "productos",
+        "id_producto",
+        id,
+        imagen
+      );
+    }
+
+    return exito(res, { id }, "Producto creado correctamente", 201);
+  } catch (error) {
+    console.error("Error al crear producto:", error);
+    return fallo(res, "Error interno del servidor", 500);
   }
-
-  const [result] = await db.query("INSERT INTO productos SET ?", [datos]);
-
-  return exito(res, { id: result.insertId }, "Producto creado", 201);
 };
+
 
 // Actualizar producto
+// Actualizar producto (con base64 opcional)
 exports.actualizarProducto = async (req, res) => {
-  const { id } = req.params;
-  const datos = req.body;
+  try {
+    const { id } = req.params;
+    const { imagen, ...datos } = req.body;
 
-  // Si viene imagen nueva
-  if (req.file) {
-    datos.imagen = req.file.filename;
+    // Actualizar datos básicos
+    const [result] = await db.query(
+      "UPDATE productos SET ? WHERE id_producto = ?",
+      [datos, id]
+    );
+
+    if (result.affectedRows === 0) {
+      return fallo(res, "Producto no encontrado", 404);
+    }
+
+    // Si vino una nueva imagen Base64
+    if (imagen) {
+      await ImagenesController.guardarImagen(
+        "productos",
+        "id_producto",
+        id,
+        imagen
+      );
+    }
+
+    return exito(res, null, "Producto actualizado");
+  } catch (error) {
+    console.error("Error al actualizar producto:", error);
+    return fallo(res, "Error interno del servidor", 500);
   }
-
-  const [result] = await db.query(
-    "UPDATE productos SET ? WHERE id_producto = ?",
-    [datos, id]
-  );
-
-  if (result.affectedRows === 0) {
-    return fallo(res, "Producto a actualizar no encontrado", 404);
-  }
-
-  return exito(res, null, "Producto actualizado");
 };
+
 
 // Eliminar producto
 exports.eliminarProducto = async (req, res) => {

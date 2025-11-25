@@ -12,6 +12,16 @@ const modalCrear = document.getElementById("modal-crear");
 const formCrear = document.getElementById("form-crear");
 const btnAgregar = document.getElementById("btn-agregar");
 
+function convertirBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
+
+
 // Cargar tabla
 async function cargarProductos() {
     tablaBody.innerHTML = ""; // limpiar antes
@@ -110,6 +120,13 @@ form.addEventListener("submit", async (e) => {
 
     const id = form.id_producto.value;
 
+    const archivo = document.getElementById("imagen-editar").files[0];
+    let imagenBase64 = null;
+
+    if (archivo) {
+        imagenBase64 = await convertirBase64(archivo);
+    }
+
     const producto = {
         descripcion: form.descripcion.value,
         precio: form.precio.value,
@@ -118,6 +135,7 @@ form.addEventListener("submit", async (e) => {
         stock: form.stock.value,
         id_proveedor: form.id_proveedor.value,
         id_categoria: form.id_categoria.value,
+        imagen: imagenBase64 // 👈 SOLO si selecciona una nueva imagen
     };
 
     await actualizarProducto(id, producto);
@@ -125,6 +143,7 @@ form.addEventListener("submit", async (e) => {
     modal.style.display = "none";
     cargarProductos();
 });
+
 
 btnAgregar.addEventListener("click", () => {
     modalCrear.style.display = "flex";
@@ -136,6 +155,13 @@ btnAgregar.addEventListener("click", () => {
 formCrear.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    const archivo = document.getElementById("imagen-crear").files[0];
+    let imagenBase64 = null;
+
+    if (archivo) {
+        imagenBase64 = await convertirBase64(archivo);
+    }
+
     const nuevoProducto = {
         descripcion: formCrear.descripcion.value,
         precio: formCrear.precio.value,
@@ -143,7 +169,8 @@ formCrear.addEventListener("submit", async (e) => {
         marca: formCrear.marca.value,
         stock: formCrear.stock.value,
         id_proveedor: formCrear.id_proveedor.value,
-        id_categoria: formCrear.id_categoria.value
+        id_categoria: formCrear.id_categoria.value,
+        imagen: imagenBase64  // 👈 SE ENVÍA AL BACKEND
     };
 
     await crearProducto(nuevoProducto);
@@ -151,6 +178,7 @@ formCrear.addEventListener("submit", async (e) => {
     modalCrear.style.display = "none";
     cargarProductos();
 });
+
 
 
 // Cerrar modal CREAR
