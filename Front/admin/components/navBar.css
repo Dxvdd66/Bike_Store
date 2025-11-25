@@ -1,35 +1,90 @@
-.navbar {
-    width: 100%;
-    background: #1f2537;
-    padding: 15px 30px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.logo {
-    color: #fff;
+/* NAVBAR ADMIN */
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    padding: 0px;
     margin: 0;
 }
 
-.menu {
-    list-style: none;
+
+.navbar {
+    width: 100%;
+    height: 70px;
+    background: #1b1b1b;
+    color: white;
+
     display: flex;
-    gap: 25px;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 20px;   /* 🔥 reducimos padding para evitar overflow */
+    box-sizing: border-box;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    overflow: hidden; /* 🔥 elimina cualquier desbordamiento */
+}
+
+/* LOGO */
+.navbar-left {
+    flex: 1;
+}
+
+.navbar-logo {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+/* MENÚ */
+.navbar-menu {
+    flex: 2;
+    list-style: none;
+
+    display: flex;
+    justify-content: center; /* 🔥 centra el menú */
+    gap: 35px;
+
     margin: 0;
     padding: 0;
 }
 
-.menu li a {
-    color: #cbd5e1;
+/* BOTÓN DERECHA */
+.navbar-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end; /* 🔥 lo mantiene alineado sin salirse */
+}
+
+/* Estilos de enlaces */
+.navbar-menu li a {
+    color: #fff;
     text-decoration: none;
-    font-size: 16px;
     font-weight: 500;
+    padding-bottom: 3px;
+    transition: 0.3s;
+}
+
+.navbar-menu li a:hover,
+.navbar-menu li a.active {
+    color: #ffca28;
+    border-bottom: 2px solid #ffca28;
+}
+
+/* Botón cerrar sesión */
+.btn-nav {
+    padding: 8px 16px;
+    background: #ffca28;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
     transition: 0.2s;
 }
 
-.menu li a:hover {
-    color: #fff;
-    text-shadow: 0 0 4px rgba(255,255,255,0.7);
+.btn-nav:hover {
+    background: #ffd95a;
 }
