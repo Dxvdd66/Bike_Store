@@ -52,8 +52,8 @@ exports.updateUsuario = async (req, res) => {
 
     const [result] = await db.query(
         `UPDATE usuarios 
-         SET nombre=?, telefono=?, direccion=?, correo=?, ciudad=?, rol=?, contrasena=?
-         WHERE id_usuario=?`,
+        SET nombre=?, telefono=?, direccion=?, correo=?, ciudad=?, rol=?, contrasena=?
+        WHERE id_usuario=?`,
         [nombre, telefono, direccion, correo, ciudad, rol, contrasena, id]
     );
 

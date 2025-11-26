@@ -1,30 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/reportes.css" />
+    <link rel="stylesheet" href="./components/navBar.css" />
+    <title>Document</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../admin/components/navBar.css" />
-    <title>Reportes</title>
-</head>
+  <nav class="navbar">
+    <div class="navbar-left">
+      <div class="navbar-logo">Bike Store - Admin</div>
+    </div>
 
-<body>
-    <nav class="navbar">
-        <div class="navbar-left">
-            <div class="navbar-logo">Bike Store - Admin</div>
-        </div>
+    <ul class="navbar-menu">
+      <li><a href="./usuarios.html">Usuarios</a></li>
+      <li><a href="./productos.html">Productos</a></li>
+      <li><a href="./reportes.html" class="active">Reportes</a></li>
+    </ul>
 
-        <ul class="navbar-menu">
-            <li><a href="./usuarios.html">Usuarios</a></li>
-            <li><a href="./productos.html">Productos</a></li>
-            <li><a href="./reportes.html" class="active">Reportes</a></li>
-        </ul>
+    <div class="navbar-right">
+      <button class="btn-nav">🔐 Cerrar Sesión</button>
+    </div>
+  </nav>
 
-        <div class="navbar-right">
-            <button class="btn-nav">🔐 Cerrar Sesión</button>
-        </div>
-    </nav>
+  <body class="reporte-page">
+    <h1>Reporte: Productos Más Vendidos</h1>
 
-</body>
+    
+  <div class="tabla-contenedor">
+    <table>
+      <thead id="tabla-head"></thead>
+      <tbody id="tabla-body"></tbody>
+    </table>
+  </div>
 
+    <script type="module" src="js/logica/reportes.js"></script>
+  </body>
+
+
+  <footer class="footer">
+    <div class="footer-marca">Bike Store</div>
+    <div class="footer-info">Colombia • Línea de atención: +57 310 555 8899</div>
+
+    <div class="footer-redes">
+        <svg class="icono-red" viewBox="0 0 24 24">
+            <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2c0-2 1.2-3.1 3-3.1 .9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.8h2.5l-.4 3h-2.1v7A10 10 0 0 0 22 12" />
+        </svg>
+
+        <svg class="icono-red" viewBox="0 0 24 24">
+            <path d="M23 3a10.9 10.9 0 0 1-3.1 1A4.48 4.48 0 0 0 22.5.4a9.9 9.9 0 0 1-3.2 1.3A4.92 4.92 0 0 0 16.5 0c-3 0-5.2 2.8-4.5 5.7A14 14 0 0 1 1.6.8 4.93 4.93 0 0 0 3.2 7a4.9 4.9 0 0 1-2.2-.6v.1c0 2.4 1.7 4.4 4 4.9A5 5 0 0 1 3 12v.1c.7 2.1 2.8 3.6 5.3 3.7A10 10 0 0 1 0 20.5 14 14 0 0 0 7.6 23c9.1 0 14-7.7 14-14.3V7a9 9 0 0 0 2.4-2.3" />
+        </svg>
+
+        <svg class="icono-red" viewBox="0 0 24 24">
+            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm3.2 7.3h-1.9v-1.3c0-.5.4-.6.7-.6h1.1V5.2l-1.6-.1c-1.8 0-2.2 1.3-2.2 2.2v1.9h-1.5v2h1.5v6h2.3v-6h1.9z"/>
+        </svg>
+    </div>
+</footer>
 </html>
+ 
