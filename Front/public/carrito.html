@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Zona Bike Store</title>
+
+    <link rel="stylesheet" href="../public/styles/carrito.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <a href="productos.html" class="logo">
+            <img src="img/logo.png" alt="Logo">
+        </a>
+
+        <div class="navbar-busqueda">
+            <input type="text" placeholder="Buscar productos...">
+        </div>
+
+        <div class="navbar-botones">
+            <button class="btn-nav">Carrito</button>
+            <button class="btn-nav">Iniciar Sesión</button>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO DEL CARRITO -->
+    <main class="carrito-container">
+
+        <h1 class="carrito-titulo">Tu Carrito</h1>
+
+        <div class="carrito-grid">
+
+            <!-- =======================
+                LISTA DE PRODUCTOS
+            ======================== -->
+            <section class="carrito-items">
+
+                <h2>Mi carrito</h2>
+
+                <div id="contenedor-carrito"></div>
+
+                <div class="total">
+                    <h3>Total a pagar: <span id="total-pagar">$0</span></h3>
+                </div>
+
+            </section>
+
+
+            <!-- =======================
+                RESUMEN DEL PEDIDO
+            ======================== -->
+            <section class="carrito-resumen">
+
+                <h2>Resumen</h2>
+
+                <div class="resumen-linea">
+                    <span>Productos</span>
+                    <span id="resumen-productos">$0</span>
+                </div>
+
+                <div class="resumen-linea">
+                    <span>Envío</span>
+                    <span>$0</span>
+                </div>
+
+                <div class="resumen-total">
+                    <span>Total</span>
+                    <span id="resumen-total">$0</span>
+                </div>
+
+                <button class="btn-pagar">Finalizar Compra</button>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="footer-marca">Bike Store</div>
+
+        <div class="footer-info">
+            Colombia • Atención al Cliente: +57 320 555 8899 <br>
+            © 2025 Bike Store — Todos los derechos reservados
+        </div>
+
+        <div class="footer-redes">
+
+            <!-- ICONOS -->
+            <svg class="icono-red" viewBox="0 0 24 24">
+                <path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-3h2.5V9.5c0-2.5 1.5-3.9 3.8-3.9
+                1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.5V12H17l-.4 3h-2.1v7A10 10 0 0 0 22 12z" />
+            </svg>
+
+            <svg class="icono-red" viewBox="0 0 24 24">
+                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2
+                a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1
+                6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zm4.25-3.75
+                a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25z" />
+            </svg>
+
+            <svg class="icono-red" viewBox="0 0 24 24">
+                <path d="M20 7.5c-1.7-.1-3.3-.9-4.3-2.2A6.4 6.4 0 0 1 15 2h-3v13.3a3 3 0 1 1-3-3
+                c.3 0 .7 0 1 .1V9.3a6 6 0 1 0 5 8.9A6 6 0 0 0 19 14V8a8 8 0 0 0 1 .4V7.5z" />
+            </svg>
+
+        </div>
+    </footer>
+
+    <!-- LÓGICA -->
+    <script type="module" src="js/conexion/apiProductos.js"></script>
+    <script type="module" src="js/carrito.js"></script>
+
+</body>
+
+</html>
