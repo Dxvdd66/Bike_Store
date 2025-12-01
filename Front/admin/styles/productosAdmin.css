@@ -82,8 +82,9 @@ tbody tr:hover {
 }
 
 /* ===== BOTONES DE ACCIÓN ===== */
-.btn-editar,
+
 .btn-eliminar {
+    background-color: #ffca28;
     padding: 6px 12px;
     border-radius: 6px;
     cursor: pointer;
@@ -93,22 +94,23 @@ tbody tr:hover {
     transition: 0.2s;
 }
 
-/* EDITAR */
-.btn-editar {
-    background: #007bff;
+.btn-eliminar:hover{
+    background-color: #ffd95a;
 }
 
-.btn-editar:hover {
-    background: #0062d6;
+.btn-editar{
+    background-color: #ffca28;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
 }
 
-/* ELIMINAR */
-.btn-eliminar {
-    background: #d9534f;
-}
-
-.btn-eliminar:hover {
-    background: #c9302c;
+.btn-editar:hover{
+    background-color: #ffd95a;
 }
 
 

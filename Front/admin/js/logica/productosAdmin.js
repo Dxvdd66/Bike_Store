@@ -53,11 +53,11 @@ async function cargarProductos() {
             <td>${producto.nombre_categoria}</td>
 
             <td>
-                <button class="editar" data-id="${producto.id_producto}">Editar</button>
+                <button class="btn-editar" data-id="${producto.id_producto}">Editar</button>
             </td>
 
             <td>
-                <button class="eliminar" data-id="${producto.id_producto}">Eliminar</button>
+                <button class="btn-eliminar" data-id="${producto.id_producto}">Eliminar</button>
             </td>
         `;
 
@@ -69,7 +69,7 @@ async function cargarProductos() {
 
 // Eventos de editar y eliminar
 function agregarEventos() {
-    document.querySelectorAll(".eliminar").forEach(btn => {
+    document.querySelectorAll(".btn-eliminar").forEach(btn => {
         btn.addEventListener("click", async () => {
             const id = btn.dataset.id;
 
@@ -80,7 +80,7 @@ function agregarEventos() {
         });
     });
 
-    document.querySelectorAll(".editar").forEach(btn => {
+    document.querySelectorAll(".btn-editar").forEach(btn => {
         btn.addEventListener("click", () => abrirModalEditar(btn.dataset.id));
     });
 }
