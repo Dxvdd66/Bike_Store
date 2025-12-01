@@ -48,8 +48,8 @@ async function cargarUsuarios() {
             <td>${usuario.ciudad}</td>
             <td>${usuario.rol}</td>
             <td>
-                <button class="btn azul" onclick='abrirModalEditar(${JSON.stringify(usuario)})'>Editar</button>
-                <button class="btn rojo" onclick="confirmarEliminar(${usuario.id_usuario})">Eliminar</button>
+                <button class="btn-editar" onclick='abrirModalEditar(${JSON.stringify(usuario)})'>Editar</button>
+                <button class="btn-eliminar" onclick="confirmarEliminar(${usuario.id_usuario})">Eliminar</button>
             </td>
         `;
 
