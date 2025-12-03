@@ -1,6 +1,5 @@
 // public/js/logica/productos.js
 import { obtenerProductos } from "../conexion/apiProductos.js";
-import { addToCart } from "./carrito.js"; // asegúrate que la ruta es correcta
 
 const contenedor = document.getElementById("contenedor-productos");
 
