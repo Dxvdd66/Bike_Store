@@ -205,3 +205,102 @@ body {
   fill: #ffd95a;
   transform: scale(1.15);
 }
+
+/* ========== MODAL GENERAL ========== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Oculto por defecto */
+.hidden {
+  display: none !important;
+}
+
+/* Cuadro del modal */
+.modal-dialog {
+  background: #fff;
+  padding: 25px;
+  width: 380px;
+  border-radius: 10px;
+  position: relative;
+}
+
+/* Botón cerrar */
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Tabs */
+.auth-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  cursor: pointer;
+  background: #ffca28;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  margin: 5px;
+}
+
+.tab:hover{
+  background-color: #ffd95a;
+}
+
+.tab.active {
+  background: #ffca28;
+  color: black;
+  border: none;
+}
+
+.tab.active:hover{
+  background-color: #ffd95a;
+}
+/* Forms */
+.auth-form {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-form.active {
+  display: flex;
+}
+
+.auth-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.btn-auth {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  background: #ffca28;
+  color: black;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-auth:hover {
+  background: #ffd95a;
+}

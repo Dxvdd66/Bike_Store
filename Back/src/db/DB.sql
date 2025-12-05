@@ -63,49 +63,104 @@ CREATE TABLE detalle_pedido (
     FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
 );
 
-INSERT INTO usuarios (nombre, telefono, direccion, correo, ciudad, rol, contrasena)
-VALUES
-("Julian Torres", 3004567890, "Cra 10 #20-30", "julian@example.com", "Bogotá", "administrador", "pass1"),
-("Maria Lopez", 3109876543, "Cl 45 #15-22", "maria@gmail.com", "Medellín", "cliente", "pass2"),
-("Carlos Perez", 3152223344, "Av 9 #12-33", "carlos@hotmail.com", "Cali", "cliente", "pass3"),
-("Sara Mendoza", 3124445566, "Cra 80 #55-40", "sara@example.com", "Barranquilla", "cliente", "pass4"),
-("Luis Ramírez", 3201112233, "Cl 100 #25-20", "luis@mail.com", "Bogotá", "cliente", "pass5");
+-- Cuenta de administrador --
+-- Contraseña: 1
+INSERT INTO usuarios (
+    nombre,
+    telefono,
+    direccion,
+    email,
+    fecha_creacion,
+    ciudad,
+    rol,
+    password
+) VALUES (
+    'administrador 1',
+    '1',
+    'calle 0',
+    'admin@gmail.com',
+    '2025-12-05 11:00:00',
+    'palmira',
+    'administrador',
+    '$2b$10$iKw.rwRwlV6tngEhzAZHsO2bv8e.uKJzJ2MjH2YrG8VWbMK4qw7V6' 
+);
 
-INSERT INTO proveedor (nombre_proveedor, cuenta_bancaria, telefono, direccion, correo, estado, nit)
-VALUES
-("CicloPro S.A", "123456789", 3101112233, "Zona Industrial 45", "contacto@ciclopro.com", "activo", "900123456"),
-("Andes Bikes", "987654321", 3123334445, "Av Las Palmas 33", "ventas@andesbikes.com", "activo", "901987654"),
-("BikeMaster", "456789123", 3158889991, "Cl 70 #40-55", "info@bikemaster.com", "activo", "902345678"),
-("RuedaFácil", "741852963", 3002221110, "Cra 50 #101-22", "contacto@ruedafacil.com", "inactivo", "903456789"),
-("ProPedal", "369258147", 3013332221, "Zona Franca 90", "pedidos@propedal.com", "activo", "904567890");
+
+
+
+
+-- INSERTS --
+
+INSERT INTO usuarios (nombre, telefono, direccion, correo, ciudad, rol, contrasena) VALUES
+('Carlos Pérez', 3001112222, 'Calle 10 #20-30', 'carlos@example.com', 'Bogotá', 'cliente', '$2b$10$I.d6TSGTN6noy8Xv3gNQFOKnp5cP8DAUkiAEfqksEOgtvt4tYXJja'),
+('Laura Gómez', 3003334444, 'Cra 15 #45-12', 'laura@example.com', 'Medellín', 'cliente', '$2b$10$HnG59FZ.F605rn2xSOZbcOcbfVYhKqXGZ00RUrkSOeiEiOejs8XTy'),
+('Admin Master', 3005556666, 'Av 6 #22-19', 'admin@example.com', 'Cali', 'administrador', '$2b$10$dRT475dvyxKBo40VuwTfkOYqT8p/8p1heetq9wv6cZT76DGGuPYri'),
+('Jorge Ruiz', 3007778888, 'Calle 50 #12-44', 'jorge@example.com', 'Pereira', 'cliente', '$2b$10$79sgQ3DataRUdAL3p84y8u6PC00LgCYC2XaahJNiepyybww7UXha2'),
+('María Londoño', 3009990000, 'Cra 32 #55-90', 'maria@example.com', 'Barranquilla', 'cliente', '$2b$10$qvCe7FCkn4tQKJAjXqfJsOTRdJw4eyu8coZCQySALsNFOwk7B8p2G');
+
+ INSERT INTO proveedor (nombre_proveedor, cuenta_bancaria, telefono, direccion, correo, estado, nit) VALUES
+('ProveBikes', '100200300', 3101112222, 'Zona Industrial 1', 'contacto@provebikes.com', 'activo', '900123001'),
+('CyclingPro', '200300400', 3103334444, 'Zona Industrial 2', 'ventas@cyclingpro.com', 'activo', '901234002'),
+('MegaParts', '300400500', 3105556666, 'Centro 33', 'info@megaparts.com', 'inactivo', '902345003'),
+('UrbanRide', '400500600', 3107778888, 'Sector Norte 22', 'urbansales@urbanride.com', 'activo', '903456004'),
+('BikeWorld', '500600700', 3109990000, 'Calle 80 #45', 'support@bikeworld.com', 'activo', '904567005');
 
 INSERT INTO categoria (nombre_categoria) VALUES
-("Bicicletas"),
-("Accesorios"),
-("Repuestos"),
-("Ropa Deportiva"),
-("Seguridad");
+('Montaña'),
+('Ruta'),
+('Híbrida'),
+('Eléctrica'),
+('Accesorios');
 
-INSERT INTO productos (descripcion, precio, color, marca, stock, id_proveedor, id_categoria)
-VALUES
-("Bicicleta MTB aluminio", 1200000, "Negro", "GW", 25, 1, 1),
-("Casco profesional ruta", 250000, "Rojo", "Specialized", 40, 2, 5),
-("Llantas MTB 29 x2.1", 150000, "Negro", "Maxxis", 60, 3, 3),
-("Guantes deportivos gel", 45000, "Azul", "Shimano", 80, 4, 4),
-("Porta caramañola aluminio", 30000, "Plateado", "Giant", 100, 5, 2);
+INSERT INTO productos (descripcion, precio, color, marca, stock, id_proveedor, id_categoria) VALUES
+('Bicicleta MTB Rin 29', 1500000, 'Negro', 'Trek', 10, 1, 1),
+('Bicicleta Ruta Carbono', 3500000, 'Rojo', 'Specialized', 5, 2, 2),
+('Bicicleta Híbrida Urbana', 1200000, 'Gris', 'Giant', 8, 3, 3),
+('Bicicleta Eléctrica Urbana', 4200000, 'Azul', 'Yamaha', 3, 4, 4),
+('Casco MTB Profesional', 250000, 'Verde', 'Fox', 20, 5, 5);
 
-INSERT INTO pedido (fecha, precio_unitario, descripcion, id_usuario)
-VALUES
-("2025-01-10", 1200000, "Compra bicicleta MTB", 1),
-("2025-01-12", 250000, "Compra casco", 2),
-("2025-01-15", 150000, "Compra llanta MTB", 3),
-("2025-01-18", 45000, "Compra guantes", 4),
-("2025-01-20", 30000, "Compra porta caramañola", 5);
+INSERT INTO pedido (fecha, precio_unitario, descripcion, id_usuario) VALUES
+('2025-01-10', 1500000, 'Compra bicicleta MTB', 1),
+('2025-01-12', 3500000, 'Compra bicicleta ruta', 2),
+('2025-01-15', 250000, 'Compra casco', 3),
+('2025-01-18', 1200000, 'Compra híbrida urbana', 4),
+('2025-01-20', 4200000, 'Compra bicicleta eléctrica', 5);
 
-INSERT INTO detalle_pedido (descripcion, precio_total, fecha, estado, id_pedido, id_producto)
-VALUES
-("Bicicleta MTB aluminio", 1200000, "2025-01-10 10:30:00", "pagado", 1, 1),
-("Casco profesional ruta", 250000, "2025-01-12 11:00:00", "pendiente", 2, 2),
-("Llanta MTB 29 x2.1", 150000, "2025-01-15 14:20:00", "pagado", 3, 3),
-("Guantes deportivos gel", 45000, "2025-01-18 09:15:00", "cancelado", 4, 4),
-("Porta caramañola aluminio", 30000, "2025-01-20 13:40:00", "pagado", 5, 5);
+INSERT INTO detalle_pedido (descripcion, precio_total, fecha, estado, id_pedido, id_producto) VALUES
+('Detalle MTB', 1500000, '2025-01-10 10:00:00', 'pagado', 1, 1),
+('Detalle Ruta', 3500000, '2025-01-12 11:00:00', 'pagado', 2, 2),
+('Detalle Casco', 250000, '2025-01-15 09:30:00', 'pagado', 3, 5),
+('Detalle Híbrida', 1200000, '2025-01-18 14:20:00', 'pendiente', 4, 3),
+('Detalle Eléctrica', 4200000, '2025-01-20 15:10:00', 'pendiente', 5, 4);
+
+
+-- Contraseñas hasheadas y en texto plano --
+/*
+Contraseña: clave123
+Hash:
+$2b$10$I.d6TSGTN6noy8Xv3gNQFOKnp5cP8DAUkiAEfqksEOgtvt4tYXJja
+
+2Laura Gómez
+
+Contraseña: moto456
+Hash:
+$2b$10$HnG59FZ.F605rn2xSOZbcOcbfVYhKqXGZ00RUrkSOeiEiOejs8XTy
+
+3Admin Master
+
+Contraseña: admin789
+Hash:
+$2b$10$dRT475dvyxKBo40VuwTfkOYqT8p/8p1heetq9wv6cZT76DGGuPYri
+
+4Jorge Ruiz
+
+Contraseña: bike2024
+Hash:
+$2b$10$79sgQ3DataRUdAL3p84y8u6PC00LgCYC2XaahJNiepyybww7UXha2
+
+5María Londoño
+
+Contraseña: pass555
+Hash:
+$2b$10$qvCe7FCkn4tQKJAjXqfJsOTRdJw4eyu8coZCQySALsNFOwk7B8p2G 
+*/

@@ -11,19 +11,58 @@
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <!-- LOGO --> <div class="logo"> <img src="img/logo.png" alt="Logo"> </div>
-        
-        <div class="navbar-busqueda">
-            <input id="input-busqueda" type="text" placeholder="Buscar productos...">
-        </div>
+   <!-- NAVBAR (usa tu actual navbar; aquí solo la parte del botón) -->
+<nav class="navbar">
+  <div class="logo"><img src="img/logo.png" alt="Logo"></div>
 
-        <div class="navbar-botones">
-            <button class="btn-nav" onclick="location.href='./carrito.html'">Carrito</button>
-            <button class="btn-nav">Iniciar Sesión</button>
-        </div>
-    </nav>
+  <div class="navbar-busqueda">
+    <input id="input-busqueda" type="text" placeholder="Buscar productos...">
+  </div>
+
+  <div class="navbar-botones">
+    <button class="btn-nav" onclick="location.href='./carrito.html'">Carrito</button>
+    <!-- abrir modal -->
+    <button id="btn-open-auth" class="btn-nav">Iniciar Sesión</button>
+  </div>
+</nav>
+
+<!-- ================= Modal Auth (Login + Registro) ================= -->
+<div id="modal-auth" class="modal hidden">
+  <div class="modal-dialog">
+    <span id="close-modal" class="close">&times;</span>
+
+    <!-- TABS -->
+    <div class="auth-tabs">
+      <button id="tab-login" class="tab active">Iniciar sesión</button>
+      <button id="tab-register" class="tab">Registrarse</button>
+    </div>
+
+    <!-- LOGIN -->
+    <form id="form-login" class="auth-form active">
+      <h3>Iniciar Sesión</h3>
+      <input type="email" id="login-correo" placeholder="Correo" required>
+      <input type="password" id="login-contrasena" placeholder="Contraseña" required>
+      <button type="submit" class="btn-auth">Entrar</button>
+    </form>
+
+    <!-- REGISTRO -->
+    <form id="form-register" class="auth-form">
+      <h3>Crear Cuenta</h3>
+      <input type="text" id="reg-nombre" placeholder="Nombre completo" required>
+      <input type="number" id="reg-telefono" placeholder="Teléfono" required>
+      <input type="text" id="reg-direccion" placeholder="Dirección" required>
+      <input type="email" id="reg-correo" placeholder="Correo electrónico" required>
+      <input type="text" id="reg-ciudad" placeholder="Ciudad" required>
+      <input type="hidden" id="reg-rol" value="cliente">
+      <input type="password" id="reg-contrasena" placeholder="Contraseña" required>
+      <button type="submit" class="btn-auth">Registrarse</button>
+    </form>
+
+  </div>
+</div>
+
+
+
 
     <!-- BANNER (FUERA DEL NAVBAR) -->
     <div class="banner">
@@ -76,6 +115,14 @@
 
 
     <script type="module" src="../public/js/logica/productos.js"></script>
+    <!-- link al script -->
+    <script type="module" src="../public/js/conexion/auth.js"></script>
 </body>
 
 </html>
+
+
+
+/*
+
+*/

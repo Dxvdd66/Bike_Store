@@ -15,12 +15,6 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 // Montar rutas normales
 app.use('/api', crudRoutes);
 
-// Middleware global de errores
-app.use((err, req, res, next) => {
-    console.error("❌ Error:", err);
-    res.status(500).json({ error: err.message });
-});
-
 
 app.use('/api/categoria', require('./routes/categoria.routes.js'));
 app.use('/api/detalle_pedido', require('./routes/detalle_pedido.routes.js'));
@@ -32,8 +26,11 @@ app.use('/api/reportes/productos-mas-vendidos', require('./routes/reportes.route
 app.use('/api/auth', require('./routes/auth.routes'));
 
 
-
-
+// Middleware global de errores
+app.use((err, req, res, next) => {
+    console.error("❌ Error:", err);
+    res.status(500).json({ error: err.message });
+});
 
 
 module.exports = app;
