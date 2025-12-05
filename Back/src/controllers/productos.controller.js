@@ -7,8 +7,8 @@ exports.getProductos = async (req, res) => {
   try {
     const [rows] = await db.query(`
       SELECT p.*, 
-             c.nombre_categoria, 
-             pr.nombre_proveedor
+            c.nombre_categoria, 
+            pr.nombre_proveedor
       FROM productos p
       LEFT JOIN categoria c ON p.id_categoria = c.id_categoria
       LEFT JOIN proveedor pr ON p.id_proveedor = pr.id_proveedor
