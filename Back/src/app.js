@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Importar rutas normales
 const crudRoutes = require('./routes/crud.routes.js');
-
+const authRoutes = require("./routes/auth.routes");
 const app = express();
 
 // Middlewares globales
@@ -28,6 +28,10 @@ app.use('/api/proveedor', require('./routes/proveedor.routes.js'));
 app.use('/api/usuarios', require('./routes/usuarios.routes.js'));
 app.use('/api/productos', require('./routes/productos.routes.js'));
 app.use('/api/pedido', require('./routes/pedido.routes.js'));
+app.use('/api/reportes/productos-mas-vendidos', require('./routes/reportes.routes.js'));
+app.use('/api/auth', require('./routes/auth.routes'));
+
+
 
 
 
