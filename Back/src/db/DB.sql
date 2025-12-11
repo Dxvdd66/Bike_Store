@@ -62,3 +62,13 @@ CREATE TABLE detalle_pedido (
     FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido),
     FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
 );
+
+CREATE TABLE pedido_envio (
+    id_envio INT AUTO_INCREMENT PRIMARY KEY,
+    id_pedido INT,
+    nombre VARCHAR(100),
+    telefono VARCHAR(20),
+    ciudad VARCHAR(100),
+    direccion VARCHAR(150),
+    creado_en DATETIME
+);
