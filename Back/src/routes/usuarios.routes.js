@@ -1,5 +1,8 @@
 const express = require("express");
 const router = express.Router();
+
+const auth = require("../middlewares/auth");
+const authAdmin = require("../middlewares/authAdmin");
 const errorControl = require("../middlewares/errorControl");
 
 const {
@@ -10,10 +13,11 @@ const {
     deleteUsuario
 } = require("../controllers/usuarios.controller");
 
-router.get("/", errorControl(getUsuarios));
-router.get("/:id", errorControl(getUsuario));
-router.post("/", errorControl(createUsuario));
-router.put("/:id", errorControl(updateUsuario));
-router.delete("/:id", errorControl(deleteUsuario));
+// ADMIN
+router.get("/", auth, authAdmin, errorControl(getUsuarios));
+router.get("/:id", auth, authAdmin, errorControl(getUsuario));
+router.post("/", auth, authAdmin, errorControl(createUsuario));
+router.put("/:id", auth, authAdmin, errorControl(updateUsuario));
+router.delete("/:id", auth, authAdmin, errorControl(deleteUsuario));
 
 module.exports = router;

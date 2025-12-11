@@ -5,6 +5,13 @@ import {
     eliminarUsuario 
 } from "../conexion/apiUsuarios.js";
 
+const user = JSON.parse(localStorage.getItem("usuario"));
+const token = localStorage.getItem("token");
+
+if (!token || !user || user.rol !== "Administrador") {
+    window.location.href = "/Front/public/productos.html";
+}
+
 const tablaBody = document.getElementById("tabla-usuarios");
 
 const modalCrear = document.getElementById("modal-crear");

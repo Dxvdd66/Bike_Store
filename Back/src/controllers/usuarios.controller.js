@@ -1,16 +1,13 @@
 const db = require("../config/conexion_DB");
 const { exito, fallo } = require("../utils/respuesta");
-const bcrypt = require("bcrypt"); // ← agregado
-
-
-
+const bcrypt = require("bcrypt");
 
 // Obtener todos los usuarios
 exports.getUsuarios = async (req, res) => {
-  const [rows] = await db.query("SELECT * FROM usuarios");
+    const [rows] = await db.query("SELECT * FROM usuarios");
 
     if (rows.length === 0) {
-    return fallo(res, "No hay usuarios registrados", 404);
+        return fallo(res, "No hay usuarios registrados", 404);
     }
 
     return exito(res, rows, "Usuarios obtenidos");
@@ -21,35 +18,40 @@ exports.getUsuarios = async (req, res) => {
 exports.getUsuario = async (req, res) => {
     const { id } = req.params;
 
-    const [rows] = await db.query(
-    "SELECT * FROM usuarios WHERE id_usuario = ?",
-    [id]
-    );
+    const [rows] = await db.query("SELECT * FROM usuarios WHERE id_usuario = ?", [id]);
 
     if (rows.length === 0) {
-    return fallo(res, "Usuario no encontrado", 404);
+        return fallo(res, "Usuario no encontrado", 404);
     }
 
     return exito(res, rows[0], "Usuario encontrado");
 };
 
 
-// Crear usuario
+// Crear usuario (admin o público)
 exports.createUsuario = async (req, res) => {
-    const { nombre, telefono, direccion, correo, ciudad, rol, contrasena } = req.body;
+    const { nombre, telefono, direccion, correo, ciudad, contrasena, rol } = req.body;
 
-    // Encriptar contraseña
+    // Si viene de un usuario autenticado
+    let rolFinal = "Cliente";
+    if (req.usuario?.rol === "Administrador") {
+        rolFinal = rol || "Cliente";
+    }
+
+    // Validación de duplicado
+    const [[dupe]] = await db.query("SELECT id_usuario FROM usuarios WHERE correo = ?", [correo]);
+    if (dupe) return fallo(res, "El correo ya está registrado", 400);
+
     const hash = await bcrypt.hash(contrasena, 10);
 
     const [result] = await db.query(
-        `INSERT INTO usuarios (nombre, telefono, direccion, correo, ciudad, rol, contrasena)
-        VALUES (?, ?, ?, ?, ?, ?, ?)`,
-        [nombre, telefono, direccion, correo, ciudad, rol, hash]
+        `INSERT INTO usuarios (nombre, telefono, direccion, correo, ciudad, rol, contrasena, fecha_registro)
+         VALUES (?, ?, ?, ?, ?, ?, ?, NOW())`,
+        [nombre, telefono, direccion, correo, ciudad, rolFinal, hash]
     );
 
     return exito(res, { id: result.insertId }, "Usuario creado", 201);
 };
-
 
 
 // Actualizar usuario
@@ -57,20 +59,16 @@ exports.updateUsuario = async (req, res) => {
     const { id } = req.params;
     const { nombre, telefono, direccion, correo, ciudad, rol, contrasena } = req.body;
 
-    // Obtener usuario actual
-    const [rows] = await db.query("SELECT contrasena FROM usuarios WHERE id_usuario = ?", [id]);
-    if (rows.length === 0) {
-        return fallo(res, "Usuario a actualizar no encontrado", 404);
-    }
+    const [[usuario]] = await db.query("SELECT contrasena FROM usuarios WHERE id_usuario = ?", [id]);
+    if (!usuario) return fallo(res, "Usuario no encontrado", 404);
 
-    let hash = rows[0].contrasena; // mantener contraseña actual
+    let hash = usuario.contrasena;
 
-    // Si enviaron una contraseña nueva, la encriptamos
     if (contrasena && contrasena.trim() !== "") {
         hash = await bcrypt.hash(contrasena, 10);
     }
 
-    const [result] = await db.query(
+    await db.query(
         `UPDATE usuarios 
         SET nombre=?, telefono=?, direccion=?, correo=?, ciudad=?, rol=?, contrasena=?
         WHERE id_usuario=?`,
@@ -81,21 +79,15 @@ exports.updateUsuario = async (req, res) => {
 };
 
 
-
-
 // Eliminar usuario
 exports.deleteUsuario = async (req, res) => {
     const { id } = req.params;
 
-    const [result] = await db.query(
-    "DELETE FROM usuarios WHERE id_usuario = ?",
-    [id]
-    );
+    const [result] = await db.query("DELETE FROM usuarios WHERE id_usuario = ?", [id]);
 
     if (result.affectedRows === 0) {
-    return fallo(res, "Usuario a eliminar no encontrado", 404);
+        return fallo(res, "Usuario no encontrado", 404);
     }
 
     return exito(res, null, "Usuario eliminado");
 };
-

@@ -1,5 +1,7 @@
 // public/js/logica/productos.js
 import { obtenerProductos } from "../conexion/apiProductos.js";
+import { addToCart } from "./carrito.js";
+
 
 let productosCache = []; // cache para no pedir siempre al backend
 const contenedorId = "contenedor-productos";
@@ -65,7 +67,7 @@ function renderizarProductos(productos, contenedor) {
     contenedor.innerHTML = "";
 
     if (!productos || productos.length === 0) {
-        contenedor.innerHTML = "<h1>Produco no encontrado!.</h1>";
+        contenedor.innerHTML = "<h1>Producto no encontrado!.</h1>";
         return;
     }
 
@@ -81,28 +83,32 @@ function renderizarProductos(productos, contenedor) {
 
         const btn = document.createElement("button");
         btn.className = "btn-nav btn-add";
-        btn.textContent = "Añadir al carrito";
 
-        btn.addEventListener("click", () => {
-            const prodParaCarrito = {
-                id: producto.id_producto,
-                nombre: producto.descripcion,
-                precio: Number(producto.precio),
-                imagen: producto.imagen
-            };
-            console.log("Añadiendo al carrito:", prodParaCarrito);
-            // addToCart debe estar definido en otra parte global o importarlo
-            if (typeof addToCart === "function") {
+        if (producto.stock > 0) {
+            btn.textContent = "Añadir al carrito";
+            btn.addEventListener("click", () => {
+                const prodParaCarrito = {
+                    id: producto.id_producto,
+                    nombre: producto.descripcion,
+                    precio: Number(producto.precio),
+                    imagen: producto.imagen,
+                    cantidad: 1
+                };
+
                 addToCart(prodParaCarrito);
-            } else {
-                console.warn("addToCart no está definido en el scope global.");
-            }
-        });
+                abrirModal("modalCarrito");
+            });
+        } else {
+            btn.textContent = "Agotado";
+            btn.disabled = true; // ❌ Deshabilitar botón si no hay stock
+            btn.classList.add("btn-disabled"); // Opcional: puedes darle estilo
+        }
 
         card.appendChild(btn);
         contenedor.appendChild(card);
     });
 }
+
 
 function filtrarYRenderizar(filtro, contenedor) {
     if (!filtro) {
@@ -120,68 +126,3 @@ function filtrarYRenderizar(filtro, contenedor) {
 
 // arrancar
 inicializar();
-
-/*import { obtenerProductos } from "../conexion/apiProductos.js";
-
-const contenedor = document.getElementById("contenedor-productos");
-
-async function cargarProductos() {
-    const productos = await obtenerProductos();
-
-    if (!contenedor) {
-        console.error("No se encontró #contenedor-productos en el DOM");
-        return;
-    }
-
-    if (!productos || productos.length === 0) {
-        contenedor.innerHTML = "<p>No hay productos disponibles.</p>";
-        return;
-    }
-
-    contenedor.innerHTML = ""; // limpiar antes de renderizar
-
-    productos.forEach(producto => {
-        const card = document.createElement("div");
-        card.classList.add("card");
-
-        // crea el HTML base sin onclick inline
-        card.innerHTML = `
-            <img src="${producto.imagen}" alt="${producto.descripcion}" class="img-producto">
-            <h3>${producto.descripcion}</h3>
-            <p class="precio">$${producto.precio}</p>
-        `;
-
-        // crear botón y asignar evento con closure que llama a addToCart
-        const btn = document.createElement("button");
-        btn.className = "btn-nav btn-add";
-        btn.textContent = "Añadir al carrito";
-
-        btn.addEventListener("click", () => {
-            // normalizamos el objeto que vamos a guardar
-            const prodParaCarrito = {
-                id: producto.id_producto,
-                nombre: producto.descripcion,
-                precio: Number(producto.precio),
-                imagen: producto.imagen
-            };
-
-            // opcional: debug
-            console.log("Añadiendo al carrito:", prodParaCarrito);
-
-            addToCart(prodParaCarrito);
-        });
-
-        card.appendChild(btn);
-        contenedor.appendChild(card);
-    });
-}
-
-cargarProductos();
-
-const inputBusqueda = document.getElementById("input-busqueda");
-
-inputBusqueda.addEventListener("input", (e) => {
-    const texto = e.target.value;
-    cargarProductos(texto); // ← filtra en tiempo real
-});
-*/

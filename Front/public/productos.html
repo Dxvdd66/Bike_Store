@@ -7,23 +7,45 @@
     <title>Tienda Zona Bike Store</title>
 
     <link rel="stylesheet" href="../public/styles/productos.css">
+    <link rel="stylesheet" href="../public/styles/modales.css">
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
     <nav class="navbar">
-        <!-- LOGO --> <div class="logo"> <img src="img/logo.png" alt="Logo"> </div>
-        
+
+        <!-- LOGO -->
+        <div class="logo">
+            <img src="img/logo.png" alt="Logo">
+        </div>
+
+        <!-- BÚSQUEDA -->
         <div class="navbar-busqueda">
             <input id="input-busqueda" type="text" placeholder="Buscar productos...">
         </div>
 
-        <div class="navbar-botones">
-            <button class="btn-nav" onclick="location.href='./carrito.html'">Carrito</button>
-            <button class="btn-nav">Iniciar Sesión</button>
+        <!-- BOTONES + SESIÓN + CARRITO -->
+        <div class="navbar-botones" id="navbarAuth">
+
+            <!-- BOTÓN LOGIN -->
+            <button id="btnLogin" class="btn-nav" onclick="abrirModal('modalLogin')">
+                Iniciar Sesión
+            </button>
+
+            <!-- NOMBRE DEL USUARIO -->
+            <span id="usuarioNombre" class="usuario-nombre" style="display:none;"></span>
+
+            <!-- LOGOUT -->
+            <button id="btnLogout" class="btn-nav" style="display:none;">Cerrar Sesión</button>
+
+            <!-- CARRITO -->
+            <div class="carrito-icono" onclick="abrirModal('modalCarrito')">🛒</div>
+
         </div>
+
     </nav>
+
+
 
     <!-- BANNER (FUERA DEL NAVBAR) -->
     <div class="banner">
@@ -38,6 +60,88 @@
 
     <!-- PRODUCTOS -->
     <div id="contenedor-productos" class="grid-productos"></div>
+
+    <!-- MODAL: CARRITO -->
+    <div id="modalCarrito" class="modal">
+        <div class="modal-contenido">
+            <span class="modal-cerrar" data-close="modalCarrito">&times;</span>
+            <h2>Tu Carrito</h2>
+            <div id="lista-carrito"></div>
+            <p class="total-carrito">Total: $<span id="total-carrito">0</span></p>
+            <button id="btnPagar" class="btn-pagar" disabled>Proceder al pago</button>
+        </div>
+    </div>
+
+    <div id="modalPago" class="modal">
+    <div class="modal-contenido">
+        <span class="modal-cerrar" onclick="cerrarModal('modalPago')">&times;</span>
+
+        <h2>Información para el envío</h2>
+
+        <form id="formPago">
+
+            <input type="text" id="pagoNombre" placeholder="Nombre Completo" required>
+            <input type="number" id="pagoTelefono" placeholder="Teléfono" required>
+            <input type="text" id="pagoCiudad" placeholder="Ciudad" required>
+            <input type="text" id="pagoDireccion" placeholder="Dirección" required>
+
+            <button type="submit" class="btn-pagar">Enviar pedido</button>
+        </form>
+
+    </div>
+</div>
+
+
+<!-- MODAL LOGIN -->
+
+<div id="modalLogin" class="modal">
+    <div class="modal-contenido">
+        <span class="modal-cerrar" data-close="modalLogin">&times;</span>
+
+        <h2>Iniciar Sesión</h2>
+
+        <form id="formLogin">
+            <input type="email" id="loginEmail" placeholder="Correo" required>
+            <input type="password" id="loginPassword" placeholder="Contraseña" required>
+
+            <button type="submit" class="btn-login">Entrar</button>
+        </form>
+
+        <!-- BOTÓN REGISTRARSE -->
+        <button class="btn-registro-modal"
+            onclick="cerrarModal('modalLogin'); abrirModal('modalRegistro')">
+            Crear una cuenta
+        </button>
+    </div>
+</div>
+
+
+<!-- MODAL REGISTRO -->
+<div id="modalRegistro" class="modal">
+    <div class="modal-contenido">
+        <span class="modal-cerrar" data-close="modalRegistro">&times;</span>
+
+        <h2>Crear Cuenta</h2>
+
+        <form id="formRegistro">
+            <input type="text" id="regNombre" placeholder="Nombre completo" required>
+            <input type="number" id="regTelefono" placeholder="Teléfono" required>
+            <input type="text" id="regDireccion" placeholder="Dirección" required>
+            <input type="text" id="regCiudad" placeholder="Ciudad" required>
+            <input type="email" id="regCorreo" placeholder="Correo" required>
+            <input type="password" id="regContrasena" placeholder="Contraseña" required>
+
+            <button type="submit" class="btn-login">Registrarme</button>
+        </form>
+
+        <p class="cambio-modal">
+            ¿Ya tienes cuenta?
+            <a onclick="cerrarModal('modalRegistro'); abrirModal('modalLogin')">Inicia sesión aquí</a>
+        </p>
+    </div>
+</div>
+
+
 
     <footer class="footer">
 
@@ -74,8 +178,14 @@
     </footer>
 
 
+<script src="../public/js/logica/modales.js"></script>
+<script type="module" src="../public/js/logica/auth.js"></script>
+<script type="module" src="../public/js/logica/productos.js"></script>
+<script type="module" src="../public/js/logica/pagos.js"></script>
+<script type="module" src="../public/js/logica/sesionUI.js"></script>
 
-    <script type="module" src="../public/js/logica/productos.js"></script>
+
+
 </body>
 
 </html>

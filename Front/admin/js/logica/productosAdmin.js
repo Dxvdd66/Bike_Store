@@ -1,3 +1,10 @@
+const user = JSON.parse(localStorage.getItem("usuario"));
+const token = localStorage.getItem("token");
+
+if (!token || !user || user.rol !== "Administrador") {
+    window.location.href = "/Front/public/productos.html";
+}
+
 import { 
     obtenerProductos,
     eliminarProducto,
