@@ -9,7 +9,7 @@ CREATE TABLE usuarios (
     correo VARCHAR(100),
     fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
     ciudad VARCHAR(100),
-    rol ENUM("administrador", "cliente") DEFAULT "cliente",
+    rol ENUM("Administrador", "cliente") DEFAULT "cliente",
     contrasena VARCHAR(255)
 );
 
