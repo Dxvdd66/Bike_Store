@@ -53,8 +53,8 @@ exports.register = async (req, res) => {
     // Crear usuario cliente
     const [result] = await db.query(
         `INSERT INTO usuarios 
-         (nombre, telefono, direccion, correo, ciudad, rol, contrasena, fecha_registro)
-         VALUES (?, ?, ?, ?, ?, 'Cliente', ?, NOW())`,
+        (nombre, telefono, direccion, correo, ciudad, rol, contrasena, fecha_registro)
+        VALUES (?, ?, ?, ?, ?, 'Cliente', ?, NOW())`,
         [nombre, telefono, direccion, correo, ciudad, hash]
     );
 
